@@ -1,28 +1,55 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <v-app>
+      <v-app-bar>
+            <v-img
+                class="mx-2"
+                :src="logo"
+                max-height="40"
+                max-width="40"
+                contain
+            ></v-img>
+            <v-app-bar-title  >Tutorial</v-app-bar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-items>
+                <v-btn 
+                    variant="text"
+                    @click="goList"
+                    >
+                  List
+                </v-btn>
+                <v-btn 
+                    variant="text"
+                    @click="goAdd"
+                    >
+                  Add
+                </v-btn>
+            </v-toolbar-items>
+      </v-app-bar>
+      <v-main >
+        <v-container>
+          <router-view />
+        </v-container>
+      </v-main>  
+    </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import logo from './assets/oc-logo-white.png'
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+
+  data: () => ({
+    logo,
+  }),
+  methods: {
+    goAdd() {
+      this.$router.push({ name: 'add' });
+    },
+    goList() {
+      this.$router.push({ name: 'tutorials' });
+    }
+  },
+
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
