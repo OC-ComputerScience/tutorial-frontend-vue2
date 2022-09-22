@@ -95,7 +95,7 @@ export default {
       this.$router.push({ name: 'edit', params: { id: this.id } });
     },
     editLesson(lesson) {
-      this.$router.push({ name: 'editLesson', params: { tutorialId: this.id,lessonId: lesson.id} });
+      this.$router.push({ name: 'editLesson', params: { tutorialId: this.id, lessonId: lesson.id} });
     },
     addLesson() {
       this.$router.push({ name: 'addLesson', params: { tutorialId: this.id } });

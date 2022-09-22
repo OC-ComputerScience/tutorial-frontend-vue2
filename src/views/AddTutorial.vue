@@ -1,29 +1,53 @@
 <template>
   <div>
-    <h1>Tutorial Add</h1>
-    <h4>{{ message }}</h4>
-    <v-form>
-       <v-text-field
-            label="Title"
-            v-model="tutorial.title"
-        />
+    <v-container>
+      <v-toolbar>
+        <v-toolbar-title>Tutorial Add</v-toolbar-title>
+        <!-- <v-spacer></v-spacer>
+        <v-toolbar-title>{{this.message}}</v-toolbar-title> -->
+      </v-toolbar>
+    
+      <br>
+      <h4>{{ message }}</h4>
+      <br>
+      <v-form 
+        ref="form" 
+        v-model="valid"
+        lazy validation
+      >
         <v-text-field
-            label="Description"
-            v-model="tutorial.description"
-        />
-        <v-row justify="center">
-            <v-col col="2"> </v-col>
-            <v-col col="2">
-                <v-btn color="success" @click="saveTutorial()"
-                    >Save</v-btn
-                >
-            </v-col>
-            <v-col col="2">
-                <v-btn color="info" @click="cancel()">Cancel</v-btn>
-            </v-col>
-            <v-col col="2"> </v-col>
-        </v-row>
-    </v-form>
+          v-model="tutorial.title"
+          id="title"
+          :counter="50"
+          label="Title"
+          required
+        ></v-text-field>
+        <v-text-field
+          v-model="tutorial.description"
+          id="description"
+          :counter="50"
+          label="Description"
+          required
+        ></v-text-field>
+
+        <v-btn
+          :disabled="!valid"
+          color="success"
+          class="mr-4"
+          @click="saveTutorial()"
+        >
+          Save
+        </v-btn>
+
+        <v-btn
+          color="error"
+          class="mr-4"
+          @click="cancel()"
+        >
+          Cancel
+        </v-btn>
+      </v-form>
+    </v-container>
   </div>  
 </template>
 <script>

@@ -40,13 +40,13 @@ const router =  new Router({
       props: true
     },
     {
-      path: "/addLesson/:id",
+      path: "/addLesson/:tutorialId",
       name: "addLesson",
       component: AddLesson,
       props: true
     },
     {
-      path: "/editLesson/:id",
+      path: "/editLesson/:tutorialId/:lessonId",
       name: "editLesson",
       component: EditLesson,
       props: true
