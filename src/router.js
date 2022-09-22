@@ -34,19 +34,19 @@ const router =  new Router({
       component: AddTutorial
     },
     {
-      path: "/view",
+      path: "/view/:id",
       name: "view",
       component: ViewTutorial,
       props: true
     },
     {
-      path: "/addLesson",
+      path: "/addLesson/:id",
       name: "addLesson",
       component: AddLesson,
       props: true
     },
     {
-      path: "/editLesson",
+      path: "/editLesson/:id",
       name: "editLesson",
       component: EditLesson,
       props: true

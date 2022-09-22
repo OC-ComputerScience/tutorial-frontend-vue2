@@ -1,86 +1,94 @@
 <template>
   <div>
-    <h1>Tutorial List</h1>
-    <h4>{{ message }}</h4>
-  
-    <v-row>
-      <v-col  cols="12"
-      sm="2">
-        <v-btn color = "success"
-          @click="searchTitle"
+    <v-container>
+      <v-toolbar>
+        <v-toolbar-title>Hello!</v-toolbar-title>
+        <!-- <v-spacer></v-spacer>
+        <v-toolbar-title>{{this.message}}</v-toolbar-title> -->
+      </v-toolbar>
+      <br><br>
+      <v-card>
+        <v-card-title>
+          Tutorials
+          <v-spacer></v-spacer>
+          <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Search"
+              single-line
+              hide-details
+          ></v-text-field>
+        </v-card-title>
+        <v-card-text>
+          <b>{{ message }}</b>
+        </v-card-text>
+        <v-data-table
+          :headers="headers"
+          :search="search"
+          :items="tutorials"
+          :items-per-page="50"
         >
-          Search
-        </v-btn>
-      </v-col>
-      <v-col col="12" sm="10">
-          <v-text-field density="compact" clearable
-            v-model="title"/>
-      </v-col> 
-    </v-row>
-    <v-row>
-      <v-col  cols="9"
-            sm="2">
-          <span class="text-h6">Title</span>
-      </v-col>
-      <v-col  cols="9"
-            sm="4">
-          <span class="text-h6">Description</span>
-      </v-col>
-      <v-col  cols="9"
-            sm="1">
-          <span class="text-h6">Edit</span>
-      </v-col>
-      <v-col  cols="9"
-            sm="1">
-          <span class="text-h6">View</span>
-      </v-col>
-      <v-col  cols="9"
-            sm="1">
-          <span class="text-h6">Delete</span>
-      </v-col>
-    </v-row>
-    <TutorialDisplay
-      v-for="tutorial in tutorials"
-      :key="tutorial.id"
-      :tutorial="tutorial"
-      @deleteTutorial="goDelete(tutorial)"
-      @updateTutorial="goEdit(tutorial)"
-      @viewTutorial="goView(tutorial)"
-    />
- 
-    <v-btn  @click="removeAllTutorials">
-      Remove All
-    </v-btn>
+        <template v-slot:[`item.actions`]="{ item }">  
+          <div>   
+          <v-icon
+            small
+            class="mx-4"
+            @click="editTutorial(item)"
+          >
+            mdi-pencil
+          </v-icon>
+          <v-icon
+            small
+            class="mx-4"
+            @click="viewTutorial(item)"
+          >
+            mdi-format-list-bulleted-type
+          </v-icon>
+          <v-icon
+            small
+            class="mx-4"
+            @click="deleteTutorial(item)"
+          >
+          mdi-trash-can
+          </v-icon>
+          </div> 
+        </template>
+        </v-data-table>
+      </v-card>
+    </v-container>
   </div>
 </template>
+
 <script>
 import TutorialDataService from "../services/TutorialDataService";
-import TutorialDisplay from '@/components/TutorialDisplay.vue';
 export default {
   name: "tutorials-list",
   data() {
     return {
+      search: '',
       tutorials: [],
       currentTutorial: null,
       currentIndex: -1,
       title: "",
-      message : "Search, Edit or Delete Tutorials"
+      message : "Search, Edit or Delete Tutorials",
+      headers: [{text: 'Title', value: 'title'}, 
+                {text: 'Description', value: 'description'},
+                {text: 'Actions', value: 'actions', sortable: false },],
     };
   },
-  components: {
-        TutorialDisplay
-    },
+  mounted() {
+    this.retrieveTutorials();
+  },
   methods: {
-    goEdit(tutorial) {
+    editTutorial(tutorial) {
       this.$router.push({ name: 'edit', params: { id: tutorial.id } });
     },
-    goView(tutorial) {
+    viewTutorial(tutorial) {
       this.$router.push({ name: 'view', params: { id: tutorial.id } });
     },
-    goDelete(tutorial) {
+    deleteTutorial(tutorial) {
       TutorialDataService.delete(tutorial.id)
         .then( () => {
-    
           this.retrieveTutorials()
         })
         .catch(e => {
@@ -116,20 +124,6 @@ export default {
         });
     },
     
-    searchTitle() {
-      TutorialDataService.findByTitle(this.title)
-        .then(response => {
-          this.tutorials = response.data;
-          this.setActiveTutorial(null);
-          
-        })
-        .catch(e => {
-          this.message = e.response.data.message;
-        });
-    }
-  },
-  mounted() {
-    this.retrieveTutorials();
   }
 };
 </script>
