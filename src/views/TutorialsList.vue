@@ -60,7 +60,8 @@
 </template>
 
 <script>
-import TutorialDataService from "../services/TutorialDataService";
+import TutorialServices from "../services/tutorialServices";
+
 export default {
   name: "tutorials-list",
   data() {
@@ -87,7 +88,7 @@ export default {
       this.$router.push({ name: 'view', params: { id: tutorial.id } });
     },
     deleteTutorial(tutorial) {
-      TutorialDataService.delete(tutorial.id)
+      TutorialServices.delete(tutorial.id)
         .then( () => {
           this.retrieveTutorials()
         })
@@ -96,7 +97,7 @@ export default {
         });
     },
     retrieveTutorials() {
-      TutorialDataService.getAll()
+      TutorialServices.getAll()
         .then(response => {
           this.tutorials = response.data;
         })
@@ -114,7 +115,7 @@ export default {
       this.currentIndex = tutorial ? index : -1;
     },
     removeAllTutorials() {
-      TutorialDataService.deleteAll()
+      TutorialServices.deleteAll()
         .then(response => {
           console.log(response.data);
           this.refreshList();

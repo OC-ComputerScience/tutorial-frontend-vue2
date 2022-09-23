@@ -51,8 +51,10 @@
     </v-container>
   </div>  
 </template>
+
 <script>
-import LessonDataService from "../services/LessonDataService";
+import LessonServices from "../services/lessonServices";
+
 export default {
   name: "edit-lesson",
   props: [ 'tutorialId' , 'lessonId' ],
@@ -65,7 +67,7 @@ export default {
   },
   methods: {
     retrieveLesson() {
-      LessonDataService.getLesson(this.tutorialId, this.lessonId)
+      LessonServices.getLesson(this.tutorialId, this.lessonId)
         .then(response => {
           this.lesson= response.data;
         })
@@ -80,7 +82,7 @@ export default {
         description: this.lesson.description,
         tutorialId : this.lesson.tutorialId
       };
-      LessonDataService.updateLesson(this.lesson.tutorialId,this.lesson.id, data)
+      LessonServices.updateLesson(this.lesson.tutorialId,this.lesson.id, data)
         .then(response => {
           this.lesson.id = response.data.id;
         

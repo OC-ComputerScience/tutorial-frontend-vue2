@@ -50,8 +50,10 @@
     </v-container>
   </div>  
 </template>
+
 <script>
-import TutorialDataService from "../services/TutorialDataService";
+import TutorialServices from "../services/tutorialServices";
+
 export default {
   name: "add-tutorial",
   data() {
@@ -71,7 +73,7 @@ export default {
         title: this.tutorial.title,
         description: this.tutorial.description
       };
-      TutorialDataService.create(data)
+      TutorialServices.create(data)
         .then(response => {
           this.tutorial.id = response.data.id;
           console.log("add "+response.data);

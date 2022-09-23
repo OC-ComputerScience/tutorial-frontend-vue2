@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import LessonDataService from "../services/LessonDataService";
+import LessonServices from "../services/lessonServices";
 export default {
   name: "add-lesson",
   props: ['tutorialId'],
@@ -76,7 +76,7 @@ export default {
         description: this.lesson.description,
         tutorialId : this.tutorialId
       };
-      LessonDataService.createLesson(this.tutorialId, data)
+      LessonServices.createLesson(this.tutorialId, data)
         .then(response => {
           this.lesson.id = response.data.id;
         

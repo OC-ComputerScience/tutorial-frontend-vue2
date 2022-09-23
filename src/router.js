@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import Login from "./views/Login.vue"
+
 import TutorialsList from "./views/TutorialsList.vue"
 import EditTutorial from "./views/EditTutorial.vue"
 import AddTutorial from "./views/AddTutorial.vue"
@@ -19,6 +21,11 @@ const router =  new Router({
   routes: [
     {
       path: "/",
+      name: "login",
+      component: Login
+    },
+    {
+      path: "/tutorials",
       name: "tutorials",
       component: TutorialsList
     },
