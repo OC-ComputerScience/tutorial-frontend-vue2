@@ -3,8 +3,6 @@
       <v-row justify="center">
         <div display="flex" id="parent_id"></div>
       </v-row>
-      
-      
     </div>
 </template>
 
@@ -20,7 +18,6 @@ export default {
       lName: '',
       roleCounter: 0,
       user: {},
-
     }
   },
   created () {
