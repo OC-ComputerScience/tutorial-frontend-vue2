@@ -60,7 +60,9 @@
 </template>
 
 <script>
-import TutorialDataService from "../services/TutorialDataService";
+import TutorialServices from "../services/tutorialServices";
+import Utils from '@/config/utils.js'
+
 export default {
   name: "tutorials-list",
   data() {
@@ -70,6 +72,7 @@ export default {
       currentTutorial: null,
       currentIndex: -1,
       title: "",
+      user: {},
       message : "Search, Edit or Delete Tutorials",
       headers: [{text: 'Title', value: 'title'}, 
                 {text: 'Description', value: 'description'},
@@ -77,6 +80,7 @@ export default {
     };
   },
   mounted() {
+    this.user = Utils.getStore('user');
     this.retrieveTutorials();
   },
   methods: {
@@ -87,7 +91,7 @@ export default {
       this.$router.push({ name: 'view', params: { id: tutorial.id } });
     },
     deleteTutorial(tutorial) {
-      TutorialDataService.delete(tutorial.id)
+      TutorialServices.delete(tutorial.id)
         .then( () => {
           this.retrieveTutorials()
         })
@@ -96,7 +100,7 @@ export default {
         });
     },
     retrieveTutorials() {
-      TutorialDataService.getAll()
+      TutorialServices.getAllForUser(this.user.userId)
         .then(response => {
           this.tutorials = response.data;
         })
@@ -114,7 +118,7 @@ export default {
       this.currentIndex = tutorial ? index : -1;
     },
     removeAllTutorials() {
-      TutorialDataService.deleteAll()
+      TutorialServices.deleteAll()
         .then(response => {
           console.log(response.data);
           this.refreshList();

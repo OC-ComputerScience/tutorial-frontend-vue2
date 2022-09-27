@@ -55,8 +55,8 @@
   </div>
 </template>
 <script>
-import TutorialDataService from "../services/TutorialDataService";
-import LessonDataService from "../services/LessonDataService";
+import TutorialServices from "../services/tutorialServices";
+import LessonServices from "../services/lessonServices";
 
 export default {
   name: "view-tutorial",
@@ -77,19 +77,20 @@ export default {
   },
   methods: {
     retrieveLessons() {
-      TutorialDataService.get(this.id)
+      TutorialServices.get(this.id)
+      .then(response => {
+        this.tutorial = response.data;
+        LessonServices.getAllLessons(this.id)
         .then(response => {
-          this.tutorial= response.data;
-          LessonDataService.getAllLessons(this.id)
-            .then(response=> {
-              this.lessons = response.data})
-            .catch(e => {
-                this.message = e.response.data.message;
-              });
-            })
+          this.lessons = response.data
+        })
         .catch(e => {
-          this.message = e.response.data.message;
+            this.message = e.response.data.message;
         });
+      })
+      .catch(e => {
+        this.message = e.response.data.message;
+      });
     },
     editTutorial() {
       this.$router.push({ name: 'edit', params: { id: this.id } });
@@ -101,7 +102,7 @@ export default {
       this.$router.push({ name: 'addLesson', params: { tutorialId: this.id } });
     },
     deleteLesson(lesson) {
-      LessonDataService.deleteLesson(lesson.tutorialId,lesson.id)
+      LessonServices.deleteLesson(lesson.tutorialId,lesson.id)
         .then( () => {
           this.retrieveLessons()
         })
