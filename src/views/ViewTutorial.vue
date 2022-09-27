@@ -78,18 +78,19 @@ export default {
   methods: {
     retrieveLessons() {
       TutorialServices.get(this.id)
+      .then(response => {
+        this.tutorial = response.data;
+        LessonServices.getAllLessons(this.id)
         .then(response => {
-          this.tutorial= response.data;
-          LessonServices.getAllLessons(this.id)
-            .then(response=> {
-              this.lessons = response.data})
-            .catch(e => {
-                this.message = e.response.data.message;
-              });
-            })
+          this.lessons = response.data
+        })
         .catch(e => {
-          this.message = e.response.data.message;
+            this.message = e.response.data.message;
         });
+      })
+      .catch(e => {
+        this.message = e.response.data.message;
+      });
     },
     editTutorial() {
       this.$router.push({ name: 'edit', params: { id: this.id } });
