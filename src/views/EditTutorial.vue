@@ -1,49 +1,71 @@
 <template>
   <div>
-    <h1>Tutorial Edit</h1>
-    <h4>{{ message }}</h4>
-    <v-form>
-       <v-text-field
-            label="Title"
-            v-model="tutorial.title"
-        />
+    <v-container>
+      <v-toolbar>
+        <v-toolbar-title>Tutorial Edit</v-toolbar-title>
+        <!-- <v-spacer></v-spacer>
+        <v-toolbar-title>{{this.message}}</v-toolbar-title> -->
+      </v-toolbar>
+      <br>
+      <h4>{{ message }}</h4>
+      <br>
+      <v-form 
+        ref="form" 
+        v-model="valid"
+        lazy validation
+      >
         <v-text-field
-            label="Description"
-            v-model="tutorial.description"
-        />
+          v-model="tutorial.title"
+          id="title"
+          :counter="50"
+          label="Title"
+          required
+        ></v-text-field>
         <v-text-field
-            label="Description"
-            v-model="tutorial.published"
-        />
-        <v-row justify="center">
-            <v-col col="2"> </v-col>
-            <v-col col="2">
-                <v-btn color="success" @click="updateTutorial()"
-                    >Save</v-btn
-                >
-            </v-col>
-            <v-col col="2">
-                <v-btn color="info" @click="cancel()">Cancel</v-btn>
-            </v-col>
-            <v-col col="2"> </v-col>
-        </v-row>
-    </v-form>
+          v-model="tutorial.description"
+          id="description"
+          :counter="50"
+          label="Description"
+          required
+        ></v-text-field>
+
+        <v-btn
+          :disabled="!valid"
+          color="success"
+          class="mr-4"
+          @click="updateTutorial()"
+        >
+          Save
+        </v-btn>
+
+        <v-btn
+          color="error"
+          class="mr-4"
+          @click="cancel()"
+        >
+          Cancel
+        </v-btn>
+      </v-form>
+    </v-container>
   </div>  
 </template>
+
 <script>
-import TutorialDataService from "../services/TutorialDataService";
+import TutorialServices from "../services/tutorialServices";
+
 export default {
   name: "edit-tutorial",
   props: ['id'],
   data() {
     return {
+      valid: false,
       tutorial: {},
       message: "Enter data and click save"
     };
   },
   methods: {
     retrieveTutorial() {
-      TutorialDataService.get(this.id)
+      TutorialServices.get(this.id)
         .then(response => {
           this.tutorial= response.data;
         })
@@ -59,10 +81,9 @@ export default {
         description: this.tutorial.description
 
       };
-      TutorialDataService.update(this.id,data)
+      TutorialServices.update(this.id,data)
         .then(response => {
           this.tutorial.id = response.data.id;
-          console.log("add "+response.data);
           this.$router.push({ name: 'tutorials' });
         })
         .catch(e => {
