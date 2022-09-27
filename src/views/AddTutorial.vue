@@ -58,6 +58,7 @@ export default {
   name: "add-tutorial",
   data() {
     return {
+      valid: false,
       tutorial: {
         id: null,
         title: "",

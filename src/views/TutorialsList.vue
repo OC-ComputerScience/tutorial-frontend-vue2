@@ -61,6 +61,7 @@
 
 <script>
 import TutorialServices from "../services/tutorialServices";
+import Utils from '@/config/utils.js'
 
 export default {
   name: "tutorials-list",
@@ -71,6 +72,7 @@ export default {
       currentTutorial: null,
       currentIndex: -1,
       title: "",
+      user: {},
       message : "Search, Edit or Delete Tutorials",
       headers: [{text: 'Title', value: 'title'}, 
                 {text: 'Description', value: 'description'},
@@ -79,6 +81,7 @@ export default {
   },
   mounted() {
     this.retrieveTutorials();
+    this.user = Utils.getStore('user');
   },
   methods: {
     editTutorial(tutorial) {

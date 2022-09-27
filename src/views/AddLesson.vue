@@ -59,7 +59,7 @@ export default {
   props: ['tutorialId'],
   data() {
     return {
-      valid: false,
+      valid: true,
       lesson: {
         id: null,
         title: "",
