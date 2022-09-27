@@ -53,36 +53,43 @@
 
 <script>
 import TutorialServices from "../services/tutorialServices";
+import Utils from '@/config/utils.js'
 
 export default {
   name: "add-tutorial",
   data() {
     return {
       valid: false,
+      user: {},
       tutorial: {
         id: null,
         title: "",
         description: "",
-        published: false
+        published: false,
       },
       message: "Enter data and click save"
     };
+  },
+  mounted() {
+    this.user = Utils.getStore('user');
   },
   methods: {
     saveTutorial() {
       var data = {
         title: this.tutorial.title,
-        description: this.tutorial.description
+        description: this.tutorial.description,
+        published: true,
+        userId: this.user.userId
       };
       TutorialServices.create(data)
-        .then(response => {
-          this.tutorial.id = response.data.id;
-          console.log("add "+response.data);
-          this.$router.push({ name: 'tutorials' });
-        })
-        .catch(e => {
-          this.message = e.response.data.message;
-        });
+      .then(response => {
+        this.tutorial.id = response.data.id;
+        console.log("add "+response.data);
+        this.$router.push({ name: 'tutorials' });
+      })
+      .catch(e => {
+        this.message = e.response.data.message;
+      });
     },
     cancel(){
         this.$router.push({ name: 'tutorials' });

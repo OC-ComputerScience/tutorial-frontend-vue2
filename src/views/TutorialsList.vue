@@ -80,8 +80,8 @@ export default {
     };
   },
   mounted() {
-    this.retrieveTutorials();
     this.user = Utils.getStore('user');
+    this.retrieveTutorials();
   },
   methods: {
     editTutorial(tutorial) {
@@ -100,7 +100,7 @@ export default {
         });
     },
     retrieveTutorials() {
-      TutorialServices.getAll()
+      TutorialServices.getAllForUser(this.user.userId)
         .then(response => {
           this.tutorials = response.data;
         })
