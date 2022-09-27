@@ -49,8 +49,9 @@
     </v-container>
   </div>  
 </template>
+
 <script>
-import TutorialDataService from "../services/TutorialDataService";
+import TutorialServices from "../services/tutorialServices";
 
 export default {
   name: "edit-tutorial",
@@ -64,7 +65,7 @@ export default {
   },
   methods: {
     retrieveTutorial() {
-      TutorialDataService.get(this.id)
+      TutorialServices.get(this.id)
         .then(response => {
           this.tutorial= response.data;
         })
@@ -80,7 +81,7 @@ export default {
         description: this.tutorial.description
 
       };
-      TutorialDataService.update(this.id,data)
+      TutorialServices.update(this.id,data)
         .then(response => {
           this.tutorial.id = response.data.id;
           this.$router.push({ name: 'tutorials' });
