@@ -29,6 +29,7 @@ export default {
     async loginWithGoogle() {
       global.handleCredentialResponse = this.handleCredentialResponse;
       const client = process.env.VUE_APP_CLIENT_ID;
+      console.log(client)
       global.google.accounts.id.initialize({
         client_id: client,
         cancel_on_tap_outside: false,
