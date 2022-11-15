@@ -14,7 +14,7 @@ Vue.use(Router)
 
 const router =  new Router({
   mode: 'hash',
-  linkExactActiveClass: 'active',
+  linkExactActiveClass: 'active', 
   base:
 //    process.env.NODE_ENV === 'development'? "/" : "/tutorScheduling/", - for AWS
     process.env.NODE_ENV === 'development'? "/" : "/",
