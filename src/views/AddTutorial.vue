@@ -6,15 +6,11 @@
         <!-- <v-spacer></v-spacer>
         <v-toolbar-title>{{this.message}}</v-toolbar-title> -->
       </v-toolbar>
-    
-      <br>
+
+      <br />
       <h4>{{ message }}</h4>
-      <br>
-      <v-form 
-        ref="form" 
-        v-model="valid"
-        lazy validation
-      >
+      <br />
+      <v-form ref="form" v-model="valid" lazy validation>
         <v-text-field
           v-model="tutorial.title"
           id="title"
@@ -39,21 +35,15 @@
           Save
         </v-btn>
 
-        <v-btn
-          color="error"
-          class="mr-4"
-          @click="cancel()"
-        >
-          Cancel
-        </v-btn>
+        <v-btn color="error" class="mr-4" @click="cancel()"> Cancel </v-btn>
       </v-form>
     </v-container>
-  </div>  
+  </div>
 </template>
 
 <script>
 import TutorialServices from "../services/tutorialServices";
-import Utils from '@/config/utils.js'
+import Utils from "@/config/utils.js";
 
 export default {
   name: "add-tutorial",
@@ -67,11 +57,11 @@ export default {
         description: "",
         published: false,
       },
-      message: "Enter data and click save"
+      message: "Enter data and click save",
     };
   },
   mounted() {
-    this.user = Utils.getStore('user');
+    this.user = Utils.getStore("user");
   },
   methods: {
     saveTutorial() {
@@ -79,25 +69,22 @@ export default {
         title: this.tutorial.title,
         description: this.tutorial.description,
         published: true,
-        userId: this.user.userId
+        userId: this.user.userId,
       };
       TutorialServices.create(data)
-      .then(response => {
-        this.tutorial.id = response.data.id;
-        console.log("add "+response.data);
-        this.$router.push({ name: 'tutorials' });
-      })
-      .catch(e => {
-        this.message = e.response.data.message;
-      });
+        .then((response) => {
+          this.tutorial.id = response.data.id;
+          console.log("add " + response.data);
+          this.$router.push({ name: "tutorials" });
+        })
+        .catch((e) => {
+          this.message = e.response.data.message;
+        });
     },
-    cancel(){
-        this.$router.push({ name: 'tutorials' });
-    }
-  }
-}
-
+    cancel() {
+      this.$router.push({ name: "tutorials" });
+    },
+  },
+};
 </script>
-<style>
-
-</style>
+<style></style>
