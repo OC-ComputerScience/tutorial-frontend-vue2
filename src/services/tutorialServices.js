@@ -24,5 +24,5 @@ export default {
   },
   findByTitle(title) {
     return apiClient.get(`/tutorials?title=${title}`);
-  }
-}
+  },
+};
