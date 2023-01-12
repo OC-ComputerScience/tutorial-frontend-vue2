@@ -1,5 +1,11 @@
 # Tutorial Frontend in Vue 2
 
+This application allows users to create and maintain a list of tutorials that can have multiple lessons within. Please visit https://github.com/OC-ComputerScience/tutorial-backend for the backend repository.
+
+#### Please note:
+- This project utilizes **Google Authentication** to allow users to log in.
+- You will need to provide a **Client ID from Google** for this project to run locally.
+
 ## Project Setup
 1. Install the project.
 ```
