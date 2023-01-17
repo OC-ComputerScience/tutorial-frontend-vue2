@@ -7,7 +7,7 @@ This application allows users to create and maintain a list of tutorials that ca
 - You will need to provide a **Client ID from Google** for this project to run locally.
 
 ## Project Setup
-1. Clone the project.
+1. Clone the project into your **XAMPP/xamppfiles/htdocs** directory.
 ```
 git clone https://github.com/OC-ComputerScience/tutorial-frontend-vue2.git
 ```
