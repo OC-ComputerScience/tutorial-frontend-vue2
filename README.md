@@ -17,7 +17,7 @@ git clone https://github.com/OC-ComputerScience/tutorial-frontend-vue2.git
 npm install
 ```
 
-3. Make sure you have a project registered with the **Google Developer console**.
+3. In order to make the Google authentication work, have a project registered with the **Google Developer console**.
     - https://console.developers.google.com/
     - Enable **Google+ API** and **Google Analytics API**.
     - Enable an **OAuth consent screen**.
