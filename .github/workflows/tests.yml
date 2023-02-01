@@ -21,4 +21,4 @@ jobs:
           build: npx cypress info
           config: baseUrl=https://tutorial.eaglesoftwareteam.com
           env:
-          CYPRESS_clientUrl: https://tutorial.eaglesoftwareteam.com
+            CYPRESS_clientUrl: https://tutorial.eaglesoftwareteam.com
