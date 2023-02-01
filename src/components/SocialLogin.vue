@@ -1,7 +1,7 @@
 <template>
   <div class="signup-buttons">
     <v-row justify="center">
-      <div display="flex" id="parent_id"></div>
+      <div id="parent_id" display="flex"></div>
     </v-row>
   </div>
 </template>
@@ -11,7 +11,7 @@ import AuthServices from "@/services/authServices";
 import Utils from "@/config/utils.js";
 
 export default {
-  name: "login_signup_social",
+  name: "LoginSignupSocial",
   data() {
     return {
       fName: "",

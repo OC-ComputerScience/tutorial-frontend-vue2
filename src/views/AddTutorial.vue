@@ -12,15 +12,15 @@
       <br />
       <v-form ref="form" v-model="valid" lazy validation>
         <v-text-field
-          v-model="tutorial.title"
           id="title"
+          v-model="tutorial.title"
           :counter="50"
           label="Title"
           required
         ></v-text-field>
         <v-text-field
-          v-model="tutorial.description"
           id="description"
+          v-model="tutorial.description"
           :counter="50"
           label="Description"
           required
@@ -46,7 +46,7 @@ import TutorialServices from "../services/tutorialServices";
 import Utils from "@/config/utils.js";
 
 export default {
-  name: "add-tutorial",
+  name: "AddTutorial",
   data() {
     return {
       valid: false,

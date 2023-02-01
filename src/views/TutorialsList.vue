@@ -28,7 +28,7 @@
           :items="tutorials"
           :items-per-page="50"
         >
-          <template v-slot:[`item.actions`]="{ item }">
+          <template #[`item.actions`]="{ item }">
             <div>
               <v-icon small class="mx-4" @click="editTutorial(item)">
                 mdi-pencil
@@ -52,7 +52,7 @@ import TutorialServices from "../services/tutorialServices";
 import Utils from "@/config/utils.js";
 
 export default {
-  name: "tutorials-list",
+  name: "TutorialsList",
   data() {
     return {
       search: "",
