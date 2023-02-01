@@ -17,8 +17,8 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
+        env:
+          CYPRESS_clientUrl: https://tutorial.eaglesoftwareteam.com
         with:
           build: npx cypress info
           config: baseUrl=https://tutorial.eaglesoftwareteam.com
-          env:
-          CYPRESS_clientUrl: https://tutorial.eaglesoftwareteam.com
