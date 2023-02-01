@@ -1,13 +1,10 @@
 name: Cypress Tests
 
-on: [push, pull_request]
-
-# env:
-#   # pass an environment variable to Cypress
-#   # a test can get its value like this
-#   # Cypress.env('environmentName') // 'staging'
-#   # see https://on.cypress.io/env
-#   CYPRESS_environmentName: staging
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - dev
 
 jobs:
   test:
@@ -18,14 +15,10 @@ jobs:
         with:
           node-version: 16.x
 
-      - name: Cypress testing
+      - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
           build: npx cypress info
-          # working-directory: examples/env
-          # additional env variables to pass to Cypress specs
-          # variables are automatically casted
-          # Cypress.env('host') // 'http://api.dev.local'
-          # Cypress.env('apiPort') // 4222
-          # env: host=http://api.dev.local,apiPort=4222
-          # spec: cypress/e2e/spec.cy.js
+          config: baseUrl=https://tutorial.eaglesoftwareteam.com
+          env:
+          CYPRESS_clientUrl: https://tutorial.eaglesoftwareteam.com

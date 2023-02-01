@@ -41,11 +41,14 @@ Cypress.Commands.add("loginByGoogleApi", () => {
       refresh_token: Cypress.env("googleRefreshToken"),
     },
   }).then(({ body }) => {
-    console.log(body);
     const { access_token, id_token } = body;
+    let url =
+      (Cypress.env("clientUrl").includes("localhost")
+        ? "http://localhost"
+        : Cypress.env("clientUrl")) + "/tutorial/login";
     cy.request({
       method: "POST",
-      url: "http://localhost/tutorial/login",
+      url: url,
       body: { credential: id_token, accessToken: access_token },
     }).then(({ body }) => {
       cy.log(body);
@@ -56,12 +59,14 @@ Cypress.Commands.add("loginByGoogleApi", () => {
 });
 
 Cypress.Commands.add("logout", () => {
-  console.log(window.localStorage.getItem("user"));
   let token = JSON.parse(window.localStorage.getItem("user")).token;
-  console.log(token);
+  let url =
+    (Cypress.env("clientUrl").includes("localhost")
+      ? "http://localhost"
+      : Cypress.env("clientUrl")) + "/tutorial/login";
   cy.request({
     method: "POST",
-    url: "http://localhost/tutorial/logout",
+    url: url,
     body: { token: token },
   }).then(({ body }) => {
     cy.log(body);
