@@ -13,15 +13,15 @@
       <br />
       <v-form ref="form" v-model="valid" lazy validation>
         <v-text-field
-          v-model="lesson.title"
           id="title"
+          v-model="lesson.title"
           :counter="50"
           label="Title"
           required
         ></v-text-field>
         <v-text-field
-          v-model="lesson.description"
           id="description"
+          v-model="lesson.description"
           :counter="50"
           label="Description"
           required
@@ -46,7 +46,7 @@
 import LessonServices from "../services/lessonServices";
 
 export default {
-  name: "edit-lesson",
+  name: "EditLesson",
   props: ["tutorialId", "lessonId"],
   data() {
     return {
@@ -54,6 +54,9 @@ export default {
       lesson: {},
       message: "Enter data and click save",
     };
+  },
+  mounted() {
+    this.retrieveLesson();
   },
   methods: {
     retrieveLesson() {
@@ -90,9 +93,6 @@ export default {
         params: { id: this.lesson.tutorialId },
       });
     },
-  },
-  mounted() {
-    this.retrieveLesson();
   },
 };
 </script>

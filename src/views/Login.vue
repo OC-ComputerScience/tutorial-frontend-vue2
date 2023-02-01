@@ -12,7 +12,7 @@
 <script>
 import SocialLogin from "@/components/SocialLogin";
 export default {
-  name: "login",
+  name: "Login",
   components: {
     SocialLogin,
   },

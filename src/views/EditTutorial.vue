@@ -11,15 +11,15 @@
       <br />
       <v-form ref="form" v-model="valid" lazy validation>
         <v-text-field
-          v-model="tutorial.title"
           id="title"
+          v-model="tutorial.title"
           :counter="50"
           label="Title"
           required
         ></v-text-field>
         <v-text-field
-          v-model="tutorial.description"
           id="description"
+          v-model="tutorial.description"
           :counter="50"
           label="Description"
           required
@@ -44,7 +44,7 @@
 import TutorialServices from "../services/tutorialServices";
 
 export default {
-  name: "edit-tutorial",
+  name: "EditTutorial",
   props: ["id"],
   data() {
     return {
@@ -52,6 +52,9 @@ export default {
       tutorial: {},
       message: "Enter data and click save",
     };
+  },
+  mounted() {
+    this.retrieveTutorial();
   },
   methods: {
     retrieveTutorial() {
@@ -81,9 +84,6 @@ export default {
     cancel() {
       this.$router.push({ name: "tutorials" });
     },
-  },
-  mounted() {
-    this.retrieveTutorial();
   },
 };
 </script>

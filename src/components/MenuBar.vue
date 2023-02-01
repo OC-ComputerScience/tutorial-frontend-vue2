@@ -11,16 +11,16 @@
         ></v-img>
       </router-link>
       <v-toolbar-title class="title">
-        <div>{{ this.title }}</div>
+        <div>{{ title }}</div>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items v-if="user != null">
         <v-btn exact :to="{ name: 'tutorials' }" text> List </v-btn>
         <v-btn exact :to="{ name: 'add' }" text> Add Tutorial </v-btn>
       </v-toolbar-items>
-      <v-menu bottom min-width="200px" rounded offset-y v-if="user != null">
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn icon x-large v-on="on" v-bind="attrs">
+      <v-menu v-if="user != null" bottom min-width="200px" rounded offset-y>
+        <template #activator="{ on, attrs }">
+          <v-btn icon x-large v-bind="attrs" v-on="on">
             <v-avatar v-if="user != null" color="secondary">
               <span class="accent--text font-weight-bold">{{ initials }}</span>
             </v-avatar>
@@ -60,16 +60,16 @@ export default {
     initials: "",
     name: "",
   }),
+  computed: {
+    // _link() {
+    //     return "/" + this.selectedRoles.toLowerCase() + "Home/" + this.currentPersonRoleID;
+    // }
+  },
   async created() {
     this.resetMenu();
   },
   async mounted() {
     this.resetMenu();
-  },
-  computed: {
-    // _link() {
-    //     return "/" + this.selectedRoles.toLowerCase() + "Home/" + this.currentPersonRoleID;
-    // }
   },
   methods: {
     resetMenu() {

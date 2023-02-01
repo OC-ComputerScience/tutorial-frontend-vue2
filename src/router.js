@@ -13,7 +13,7 @@ import EditLesson from "./views/EditLesson.vue";
 Vue.use(Router);
 
 const router = new Router({
-  mode: "hash",
+  mode: "history",
   linkExactActiveClass: "active",
   base:
     //    process.env.NODE_ENV === 'development'? "/" : "/tutorScheduling/", - for AWS

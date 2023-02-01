@@ -13,15 +13,15 @@
       <br />
       <v-form ref="form" v-model="valid" lazy validation>
         <v-text-field
-          v-model="lesson.title"
           id="title"
+          v-model="lesson.title"
           :counter="50"
           label="Title"
           required
         ></v-text-field>
         <v-text-field
-          v-model="lesson.description"
           id="description"
+          v-model="lesson.description"
           :counter="50"
           label="Description"
           required
@@ -45,7 +45,7 @@
 <script>
 import LessonServices from "../services/lessonServices";
 export default {
-  name: "add-lesson",
+  name: "AddLesson",
   props: ["tutorialId"],
   data() {
     return {

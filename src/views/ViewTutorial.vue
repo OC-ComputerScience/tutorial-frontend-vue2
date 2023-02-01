@@ -35,7 +35,7 @@
           :items="lessons"
           :items-per-page="50"
         >
-          <template v-slot:[`item.actions`]="{ item }">
+          <template #[`item.actions`]="{ item }">
             <div>
               <v-icon small class="mx-4" @click="editLesson(item)">
                 mdi-pencil
@@ -55,7 +55,7 @@ import TutorialServices from "../services/tutorialServices";
 import LessonServices from "../services/lessonServices";
 
 export default {
-  name: "view-tutorial",
+  name: "ViewTutorial",
   props: ["id"],
   data() {
     return {
