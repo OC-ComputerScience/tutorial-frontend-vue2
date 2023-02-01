@@ -56,7 +56,12 @@ import LessonServices from "../services/lessonServices";
 
 export default {
   name: "ViewTutorial",
-  props: ["id"],
+  props: {
+    id: {
+      type: [Number, String],
+      default: 0,
+    },
+  },
   data() {
     return {
       search: "",

@@ -45,7 +45,12 @@ import TutorialServices from "../services/tutorialServices";
 
 export default {
   name: "EditTutorial",
-  props: ["id"],
+  props: {
+    id: {
+      type: [Number, String],
+      default: 0,
+    },
+  },
   data() {
     return {
       valid: false,

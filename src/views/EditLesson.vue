@@ -47,7 +47,16 @@ import LessonServices from "../services/lessonServices";
 
 export default {
   name: "EditLesson",
-  props: ["tutorialId", "lessonId"],
+  props: {
+    tutorialId: {
+      type: [Number, String],
+      default: 0,
+    },
+    lessonId: {
+      type: [Number, String],
+      default: 0,
+    },
+  },
   data() {
     return {
       valid: false,
