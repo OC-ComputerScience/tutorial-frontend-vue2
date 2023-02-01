@@ -14,10 +14,12 @@ jobs:
       VUE_APP_API_URL: ${{secrets.VUE_APP_API_URL}}
       VUE_APP_CLIENT_URL: ${{secrets.VUE_APP_CLIENT_URL}}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: dev
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - run: |
           touch .env
           echo VUE_APP_CLIENT_ID="$VUE_APP_CLIENT_ID" >> .env
