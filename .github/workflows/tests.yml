@@ -1,9 +1,10 @@
 name: Run Cypress tests
 
-workflow_run:
-  workflows: ["Deploy dev to AWS"]
-  types:
-    - completed
+on:
+  workflow_run:
+    workflows: ["Deploy dev to AWS"]
+    types:
+      - completed
 
 jobs:
   test:
