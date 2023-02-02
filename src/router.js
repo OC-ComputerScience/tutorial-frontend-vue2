@@ -17,7 +17,7 @@ const router = new Router({
   linkExactActiveClass: "active",
   base:
     //    process.env.NODE_ENV === 'development'? "/" : "/tutorScheduling/", - for AWS
-    process.env.NODE_ENV === "development" ? "/" : "/",
+    process.env.NODE_ENV === "development" ? "/" : "/tutorial-frontend-vue2/",
   routes: [
     {
       path: "/",
