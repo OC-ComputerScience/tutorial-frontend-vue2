@@ -17,7 +17,26 @@ git clone https://github.com/OC-ComputerScience/tutorial-frontend-vue2.git
 npm install
 ```
 
-3. In order to make the Google authentication work, have a project registered with the **Google Developer console**.
+3. Configure Apache to point to Node for API requests.
+    - In XAMPP, find the Edit/Configure button for Apache.
+    - Edit the conf file, labeled httpd.conf. 
+    - It may warn you when opening it but open it anyway.
+    - Add the following line as the last line:
+    
+    ```
+    ProxyPass /tutorial http://localhost:3100/tutorial 
+    ```
+
+    - Find the following line and remove the # at the front of the line.
+    
+    ```
+    LoadModule proxy_http_module modules/mod_proxy_http.so
+    LoadModule proxy_http2_module modules/mod_proxy_http2.so
+    ```
+    
+    - Save the file and exit XAMPP.
+
+4. In order to make the Google authentication work, have a project registered with the **Google Developer console**.
     - https://console.developers.google.com/
     - Enable **Google+ API** and **Google Analytics API**.
     - Enable an **OAuth consent screen**.
