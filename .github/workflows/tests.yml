@@ -20,10 +20,10 @@ jobs:
         env:
           VUE_APP_CLIENT_ID: ${{secrets.VUE_APP_CLIENT_ID}}
           VUE_APP_API_URL: ${{secrets.VUE_APP_API_URL}}
-          VUE_APP_CLIENT_URL: https://tutorial.eaglesoftwareteam.com
+          VUE_APP_CLIENT_URL: https://tutorial.eaglesoftwareteam.com/tutorial-frontend-vue2
           VUE_APP_CLIENT_SECRET: ${{secrets.VUE_APP_CLIENT_SECRET}}
           VUE_APP_REFRESH_TOKEN: ${{secrets.VUE_APP_REFRESH_TOKEN}}
         with:
           build: npx cypress info
-          config: baseUrl=https://tutorial.eaglesoftwareteam.com
+          config: baseUrl=https://tutorial.eaglesoftwareteam.com/tutorial-frontend-vue2
           headed: true
