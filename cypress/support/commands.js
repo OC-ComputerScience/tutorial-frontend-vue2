@@ -45,7 +45,8 @@ Cypress.Commands.add("loginByGoogleApi", () => {
     let url =
       (Cypress.env("clientUrl").includes("localhost")
         ? "http://localhost"
-        : Cypress.env("clientUrl")) + "/tutorial/login";
+        : Cypress.env("clientUrl") + "tutorial-frontend-vue2") +
+      "/tutorial/login";
     cy.request({
       method: "POST",
       url: url,
@@ -63,7 +64,8 @@ Cypress.Commands.add("logout", () => {
   let url =
     (Cypress.env("clientUrl").includes("localhost")
       ? "http://localhost"
-      : Cypress.env("clientUrl")) + "/tutorial/login";
+      : Cypress.env("clientUrl") + "tutorial-frontend-vue2") +
+    "/tutorial/login";
   cy.request({
     method: "POST",
     url: url,
