@@ -53,7 +53,7 @@ Cypress.Commands.add("loginByGoogleApi", () => {
     }).then(({ body }) => {
       cy.log(body);
       window.localStorage.setItem("user", JSON.stringify(body));
-      cy.visit("/tutorials");
+      cy.visit("/tutorial-frontend-vue2/tutorials");
     });
   });
 });
