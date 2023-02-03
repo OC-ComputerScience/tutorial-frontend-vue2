@@ -4,7 +4,8 @@ This application allows users to create and maintain a list of tutorials that ca
 
 #### Please note:
 - This project utilizes **Google Authentication** to allow users to log in.
-- You will need to provide a **Client ID from Google** for this project to run locally.
+- You will need to provide a **Client ID and Client Secret from Google** for this project to run locally.
+- You will need to provide a **Refresh Token** generated through the **Google Developers OAuth 2.0 Playground** for Cypress testing to work.
 
 ## Project Setup
 1. Clone the project into your **XAMPP/xamppfiles/htdocs** directory.
@@ -17,24 +18,9 @@ git clone https://github.com/OC-ComputerScience/tutorial-frontend-vue2.git
 npm install
 ```
 
-3. Configure Apache to point to Node for API requests.
-    - In XAMPP, find the Edit/Configure button for Apache.
-    - Edit the conf file, labeled httpd.conf. 
-    - It may warn you when opening it but open it anyway.
-    - Add the following line as the last line:
-    
-    ```
-    ProxyPass /tutorial http://localhost:3100/tutorial 
-    ```
-
-    - Find the following line and remove the # at the front of the line.
-    
-    ```
-    LoadModule proxy_http_module modules/mod_proxy_http.so
-    LoadModule proxy_http2_module modules/mod_proxy_http2.so
-    ```
-    
-    - Save the file and exit XAMPP.
+3. Make sure **Apache** is running.
+    - We recommend using XAMPP to serve this project.
+    - In XAMPP, make sure that **Apache** is running.
 
 4. In order to make the Google authentication work, have a project registered with the **Google Developer console**.
     - https://console.developers.google.com/
