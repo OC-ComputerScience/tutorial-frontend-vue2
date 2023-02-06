@@ -14,13 +14,13 @@ npm install cypress
 
 ```json
 "scripts": {
-  "serve": "vite preview --port 8081",
-  "build": "vite build",
-  "lint": "vue-cli-service lint",
-  "dev": "vite --port 3001",
-  "test": "cypress run",
-  "test:open": "cypress open"
-}
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "bundle": "mv .env dist",
+    "test": "cypress run",
+    "test:open": "cypress open"
+},
 ```
 
 3. Create `cypress.config.js` with the following
