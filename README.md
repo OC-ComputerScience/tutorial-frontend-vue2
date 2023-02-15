@@ -70,9 +70,9 @@ npm run test:open
     - It should be in your **public** folder.
     - Visual Studio Code will auto format it to where the file will not be read correctly, so add the following rule to your **settings.json** in Visual Studio Code.
 ```
-  "files.associations": {
+"files.associations": {
     "**/*.htaccess": "plaintext"
-  },
+},
 ```
 
 10. (Optional) Compile the project for production.
