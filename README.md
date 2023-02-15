@@ -65,6 +65,16 @@ npm run test
 npm run test:open
 ```
 
+10. If you are wanting to serve your project for production:
+    - You will need to have a **.htaccess** file. 
+    - It should be in your **public** folder.
+    - Visual Studio Code will auto format it to where the file will not be read correctly, so add the following rule to your **settings.json** in Visual Studio Code.
+```
+  "files.associations": {
+    "**/*.htaccess": "plaintext"
+  },
+```
+
 10. (Optional) Compile the project for production.
 ```
 npm run build
