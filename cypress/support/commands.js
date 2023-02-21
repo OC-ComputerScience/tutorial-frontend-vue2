@@ -63,7 +63,7 @@ Cypress.Commands.add("logout", () => {
   let url =
     (Cypress.env("clientUrl").includes("localhost")
       ? "http://localhost"
-      : Cypress.env("clientUrl")) + "/tutorial/login";
+      : Cypress.env("clientUrl")) + "/tutorial/logout";
   cy.request({
     method: "POST",
     url: url,
